@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="jquery.min.js"></script>
+    <script>
+
+    $(document).ready(function() {
+        $.ajax({
+            url: "http://127.0.0.1:8000/api/register/?username=flavio48&password=Fks007700@&name=teste%20ltda",
+            dataType : 'json',
+            type: 'POST',
+            // data: JSON.stringify({"username":"fspinelli50", "password":"Fks007700@", "name":"empresa ltda"}),
+            error : function(d) {
+                // error handler
+                console.log(d);
+
+            },
+            success: function(data) {
+                console.log(data);
+                return data;
+            },
+            crossDomain:false
+        });
+    });
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>
