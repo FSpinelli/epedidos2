@@ -1,19 +1,54 @@
-from django.contrib.auth.models import User, Group
-from rest_framework import viewsets
-from api.serializers import UserSerializer, GroupSerializer
+import jwt
+from django.core import serializers
+from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.models import User, Permission, Group
+from django.contrib.auth import authenticate, login as auth_login, logout
+from api.forms import *
+from api.models import *
 
+def error_form_serialization(error_dict):  
+    """  
+    This method strips the proxy objects from the
+    error dict and casts them to unicode. After
+    that the error dict can and will be
+    json-serialized.  
+    """  
+    plain_dict = dict([(k, [unicode(e) for e in v]) for k,v in error_dict.items()])   
+    return simplejson.dumps(plain_dict)
 
-class UserViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows users to be viewed or edited.
-    """
-    queryset = User.objects.all().order_by('-date_joined')
-    serializer_class = UserSerializer
+@csrf_exempt
+def index(request):
+    return HttpResponse("e-pedidos")
 
+@csrf_exempt
+def signin(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+        if user:
+            if user.is_active:
+                token = jwt.encode({request.POST.get('username',False): request.POST.get('password',False)}, 'secret', algorithm='HS256')                
+                return HttpResponse('{"token":"'+token+'"}')
+            else:
+                return HttpResponse('404') #usuario desativado
 
-class GroupViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows groups to be viewed or edited.
-    """
-    queryset = Group.objects.all()
-    serializer_class = GroupSerializer
+        else:
+            return HttpResponse('400') #usuario ou senha incorreta
+
+@csrf_exempt
+def signup(request):
+    if request.method == 'POST':
+        register_form = RegisterForm(data=request.POST)
+        if register_form.is_valid():
+            try:
+                register = register_form.save()
+                register.set_password(register.password)
+                register.save()
+                token = jwt.encode({request.POST.get('username',False): request.POST.get('password',False)}, 'secret', algorithm='HS256')
+                return HttpResponse('{"token":"'+token+'"}')
+            except:
+                return HttpResponse('500')
+        else:
+            return HttpResponse(error_form_serialization(register_form.errors))
