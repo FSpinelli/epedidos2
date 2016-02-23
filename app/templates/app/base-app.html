@@ -7,9 +7,9 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     {% load staticfiles %}
     <link rel="stylesheet" type="text/css" href="{% static 'app/lib/css/bootstrap.min.css' %}" />
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'app/font/font-awesome/css/font-awesome.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'app/lib/css/AdminLTE.min.css' %}">
-    <link rel="stylesheet" type="text/css" href="http://flatlogic.github.io/awesome-bootstrap-checkbox/demo/build.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'app/lib/css/checkbox.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'app/lib/css/skins/skin-blue.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'app/lib/css/AdminLTE.min.css' %}">
     <!--[if lt IE 9]>
@@ -24,8 +24,8 @@
     <script src="{% static 'app/lib/js/jquery.min.js' %}"></script>
     <script src="{% static 'app/lib/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'app/lib/js/app.min.js' %}"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular-route.min.js"></script>
+    <script src="{% static 'app/lib/js/angular.min.js' %}"></script>
+    <script src="{% static 'app/lib/js/angular-route.min.js' %}"></script>
     <script src="{% static 'app/lib/js/ngStorage.js' %}"></script>
     <script src="{% static 'app/lib/js/loading-bar.js' %}"></script>
     <script src="{% static 'app/js/app.js' %}"></script>

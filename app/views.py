@@ -7,22 +7,26 @@ from django.template import loader
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login as auth_login, logout
+from django.contrib.auth.decorators import login_required
 from .forms import *
-from .models import *
-
-
-def index(request):
-    template = loader.get_template('app/index.html')
-    return HttpResponse(template.render(request))
+from api.models import *
 
 @csrf_exempt
 def cadastrar(request):
     if request.method == 'POST':
+        conta_sistema_form = ContaSistemaForm(data=request.POST)
         cadastro_form = CadastroForm(data=request.POST)
         if cadastro_form.is_valid():
             cadastro = cadastro_form.save()
             cadastro.set_password(cadastro.password)
             cadastro.save()
+            user = User.objects.get(pk=cadastro.pk)
+            conta_sistema = ContaSistema()
+            conta_sistema.nome = request.POST['nome']
+            conta_sistema.usuario_criacao=user
+            conta_sistema.usuario_modificacao=user
+            conta_sistema.save()
+            user_profile = UserProfile(conta_sistema=conta_sistema, user=user).save()
             user = authenticate(username=request.POST['username'], password=request.POST['password'])
             auth_login(request, user)
             return HttpResponseRedirect('/')
@@ -30,10 +34,11 @@ def cadastrar(request):
             print cadastro_form.errors
     else:
         cadastro_form = CadastroForm()
+        conta_sistema_form = ContaSistemaForm()
     return render(
     		request,
             'app/cadastrar.html',
-            {'cadastro_form': cadastro_form})
+            {'cadastro_form': cadastro_form, 'conta_sistema_form': conta_sistema_form})
 
 @csrf_exempt
 def login(request):
@@ -59,3 +64,13 @@ def login(request):
         else:
             request.session['pag_login_required'] = ""
     return render(request, 'app/login.html', context)
+
+@login_required
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect('/login/')
+
+@login_required
+def index(request):
+    template = loader.get_template('app/index.html')
+    return HttpResponse(template.render(request))
