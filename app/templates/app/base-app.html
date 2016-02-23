@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="app">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>e-pedidos</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'app/lib/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'app/lib/css/AdminLTE.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="http://flatlogic.github.io/awesome-bootstrap-checkbox/demo/build.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'app/lib/css/skins/skin-blue.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app/lib/css/AdminLTE.min.css' %}">
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body class="hold-transition skin-blue sidebar-mini">
+    {% block content %}
+
+    {% endblock content %}
+    <script src="{% static 'app/lib/js/jquery.min.js' %}"></script>
+    <script src="{% static 'app/lib/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'app/lib/js/app.min.js' %}"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular-route.min.js"></script>
+    <script src="{% static 'app/lib/js/ngStorage.js' %}"></script>
+    <script src="{% static 'app/lib/js/loading-bar.js' %}"></script>
+    <script src="{% static 'app/js/app.js' %}"></script>
+    <script src="{% static 'app/js/controllers.js' %}"></script>
+    <script src="{% static 'app/js/services.js' %}"></script>
+  </body>
+</html>
