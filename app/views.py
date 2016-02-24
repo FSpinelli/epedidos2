@@ -72,5 +72,5 @@ def user_logout(request):
 
 @login_required
 def index(request):
-    template = loader.get_template('app/index.html')
-    return HttpResponse(template.render(request))
+    user = User.objects.get(pk=request.user.pk)
+    return render(request, 'app/index.html', {'user':user})

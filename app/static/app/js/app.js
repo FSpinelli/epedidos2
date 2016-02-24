@@ -1,25 +1,28 @@
 var app = angular.module('app',['ngRoute']);
- 
-app.config(function($routeProvider)
+var baseViews = '/static/app/views';
+app.config(function($routeProvider, $interpolateProvider)
 {
+
+   $interpolateProvider.startSymbol('[[');
+   $interpolateProvider.endSymbol(']]');
  
    $routeProvider
  
    // para a rota '/', carregaremos o template home.html e o controller 'HomeCtrl'
    .when('/', {
-      templateUrl : '/static/app/views/home.html',
+      templateUrl : baseViews+'/home.html',
       controller     : 'HomeCtrl',
    })
  
    // para a rota '/sobre', carregaremos o template sobre.html e o controller 'SobreCtrl'
-   .when('/sobre', {
-      templateUrl : '/static/app/views/sobre.html',
-      controller  : 'SobreCtrl',
+   .when('/clientes/cadastrar', {
+      templateUrl : baseViews+'/clientes/form.html',
+      controller  : 'ClienteCtrl',
    })
  
    // para a rota '/contato', carregaremos o template contato.html e o controller 'ContatoCtrl'
    .when('/contato', {
-      templateUrl : '/static/app/views/contato.html',
+      templateUrl : baseViews+'/contato.html',
       controller  : 'ContatoCtrl',
    })
  

@@ -3,7 +3,7 @@ app.controller('HomeCtrl', function($rootScope, $location)
    $rootScope.activetab = $location.path();
 });
  
-app.controller('SobreCtrl', function($rootScope, $location)
+app.controller('ClienteCtrl', function($rootScope, $location)
 {
    $rootScope.activetab = $location.path();
 });
