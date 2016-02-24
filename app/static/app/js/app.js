@@ -8,24 +8,25 @@ app.config(function($routeProvider, $interpolateProvider)
  
    $routeProvider
  
-   // para a rota '/', carregaremos o template home.html e o controller 'HomeCtrl'
    .when('/', {
       templateUrl : baseViews+'/home.html',
       controller     : 'HomeCtrl',
    })
+
+   .when('/clientes', {
+      templateUrl : baseViews+'/clientes/index.html',
+      controller  : 'ClienteCtrl',
+   })
  
-   // para a rota '/sobre', carregaremos o template sobre.html e o controller 'SobreCtrl'
    .when('/clientes/cadastrar', {
       templateUrl : baseViews+'/clientes/form.html',
       controller  : 'ClienteCtrl',
    })
  
-   // para a rota '/contato', carregaremos o template contato.html e o controller 'ContatoCtrl'
    .when('/contato', {
       templateUrl : baseViews+'/contato.html',
       controller  : 'ContatoCtrl',
    })
  
-   // caso não seja nenhum desses, redirecione para a rota '/'
    .otherwise ({ redirectTo: '/' });
 });
