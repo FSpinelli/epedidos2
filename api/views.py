@@ -52,3 +52,19 @@ def signup(request):
                 return HttpResponse('500')
         else:
             return HttpResponse(error_form_serialization(register_form.errors))
+
+def cliente(request):
+    user = User.objects.get(pk=request.user.pk)
+    user_profile = UserProfile.objects.get(user=request.user)
+
+    if request.method == 'POST':
+        cliente_form = ClienteForm(data=request.POST)
+        if cliente_form.is_valid():
+            cliente = cliente_form.save(commit=False)
+            cliente.usuario_criacao = user
+            cliente.usuario_modificacao = user
+            cliente.conta_sistema = user_profile.conta_sistema
+            cliente.save()
+            return HttpResponse(200)
+        else:
+            return HttpResponse(error_form_serialization(cliente_form.errors))

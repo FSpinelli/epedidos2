@@ -6,17 +6,57 @@
       <div class="box-body">
          <div class="row">
             <div class="col-sm-12">
-               <div class="btn-group">
-                  <button type="button" class="btn btn-default">Pessoa Jurídica</button>
-                  <button type="button" class="btn btn-default">Pessoa Física</button>
+               <div class="radio radio-inline">
+                  <input type="radio" id="pj" value="pj" name="tipo_pessoa" checked>
+                  <label for="pj"> Pessoa Jurídica </label>
+               </div>
+               <div class="radio radio-inline">
+                  <input type="radio" id="pf" value="pf" name="tipo_pessoa">
+                  <label for="pf"> Pessoa Física </label>
                </div>
             </div>
          </div>
          <div class="row">
             <div class="col-sm-6">
                <div class="form-group">
-                  <label for="razao-social">Razão Social *</label>
-                  <input type="text" class="form-control" id="razao-social">
+                  <label for="razao_social_ou_nome">Razão Social *</label>
+                  <input type="text" class="form-control" id="razao_social_ou_nome" name="razao_social_ou_nome" required>
+               </div>
+            </div>
+            <div class="col-sm-6">
+               <div class="form-group">
+                  <label for="nome_fantasia">Nome Fantasia *</label>
+                  <input type="text" class="form-control" id="nome_fantasia" name="nome_fantasia" required>
+               </div>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-sm-3">
+               <div class="form-group">
+                  <label for="codigo">Código</label>
+                  <input type="text" class="form-control" id="codigo" name="codigo">
+               </div>
+            </div>
+            <div class="col-sm-3">
+               <div class="form-group">
+                  <label for="cnpj">CNPJ</label>
+                  <input type="text" class="form-control" id="cnpj" name="cnpj">
+               </div>
+               <div class="form-group" ng-hide="true">
+                  <label for="cpf">CPF</label>
+                  <input type="text" class="form-control" id="cpf" name="cpf">
+               </div>
+            </div>
+            <div class="col-sm-3">
+               <div class="form-group">
+                  <label for="inscricao_estadual">Inscricao Estadual</label>
+                  <input type="text" class="form-control" id="inscricao_estadual" name="inscricao_estadual">
+               </div>
+            </div>
+            <div class="col-sm-3">
+               <div class="form-group">
+                  <label for="suframa">Suframa</label>
+                  <input type="text" class="form-control" id="suframa" name="suframa">
                </div>
             </div>
          </div>
