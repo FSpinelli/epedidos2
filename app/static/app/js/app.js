@@ -1,4 +1,4 @@
-var app = angular.module('app',['ngRoute']);
+var app = angular.module('app',['ngRoute', 'ui.mask']);
 var baseViews = '/static/app/views';
 app.config(function($routeProvider, $interpolateProvider)
 {

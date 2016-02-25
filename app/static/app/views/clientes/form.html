@@ -7,23 +7,26 @@
          <div class="row">
             <div class="col-sm-12">
                <div class="radio radio-inline">
-                  <input type="radio" id="pj" value="pj" name="tipo_pessoa" checked>
+                  <input type="radio" id="pj" value="pj" name="tipo_pessoa" ng-model="tipo_pessoa" ng-checked="true">
                   <label for="pj"> Pessoa Jurídica </label>
                </div>
                <div class="radio radio-inline">
-                  <input type="radio" id="pf" value="pf" name="tipo_pessoa">
+                  <input type="radio" id="pf" value="pf" name="tipo_pessoa" ng-model="tipo_pessoa">
                   <label for="pf"> Pessoa Física </label>
                </div>
             </div>
          </div>
          <div class="row">
-            <div class="col-sm-6">
+            <div ng-class="{'col-sm-12':tipo_pessoa == 'pf', 'col-sm-6':tipo_pessoa == 'pj'}" ng-init="tipo_pessoa = 'pj'">
                <div class="form-group">
-                  <label for="razao_social_ou_nome">Razão Social *</label>
+                  <label for="razao_social_ou_nome">
+                     <span ng-hide="[tipo_pessoa == 'pf']">Razão Social *</span>
+                     <span ng-show="[tipo_pessoa == 'pf']">Nome *</span>
+                  </label>
                   <input type="text" class="form-control" id="razao_social_ou_nome" name="razao_social_ou_nome" required>
                </div>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-6" ng-hide="[tipo_pessoa == 'pf']">
                <div class="form-group">
                   <label for="nome_fantasia">Nome Fantasia *</label>
                   <input type="text" class="form-control" id="nome_fantasia" name="nome_fantasia" required>
@@ -38,22 +41,22 @@
                </div>
             </div>
             <div class="col-sm-3">
-               <div class="form-group">
+               <div class="form-group" ng-hide="[tipo_pessoa == 'pf']">
                   <label for="cnpj">CNPJ</label>
-                  <input type="text" class="form-control" id="cnpj" name="cnpj">
+                  <input type="text" class="form-control" id="cnpj" ng-model="cnpj" ui-mask="99.999.999/9999-99">
                </div>
-               <div class="form-group" ng-hide="true">
+               <div class="form-group" ng-show="[tipo_pessoa == 'pf']">
                   <label for="cpf">CPF</label>
-                  <input type="text" class="form-control" id="cpf" name="cpf">
+                  <input type="text" class="form-control" id="cpf" ng-model="cpf" ui-mask="999.999.999-99">
                </div>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-3" ng-hide="[tipo_pessoa == 'pf']">
                <div class="form-group">
                   <label for="inscricao_estadual">Inscricao Estadual</label>
                   <input type="text" class="form-control" id="inscricao_estadual" name="inscricao_estadual">
                </div>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-3" ng-hide="[tipo_pessoa == 'pf']">
                <div class="form-group">
                   <label for="suframa">Suframa</label>
                   <input type="text" class="form-control" id="suframa" name="suframa">
