@@ -2,7 +2,10 @@
    <div class="box-header with-border">
       <h3 class="box-title">Novo Cliente</h3>
    </div>
-   <form role="form">
+
+
+
+   <form role="form" name="form" novalidate>
       <div class="box-body">
          <div class="row">
             <div class="col-sm-12">
@@ -17,30 +20,33 @@
             </div>
          </div>
          <div class="row">
-            <div ng-class="{'col-sm-12':tipo_pessoa == 'pf', 'col-sm-6':tipo_pessoa == 'pj'}" ng-init="tipo_pessoa = 'pj'">
-               <div class="form-group">
+            <div class="col-sm-6">
+
+            <span ng-show="(form.razao_social_ou_nome.$dirty || submitted) && form.razao_social_ou_nome.$error.required">
+      Email is required
+    </span>
+
+               <div class="form-group" ng-class="{'has-error': form.razao_social_ou_nome.$touched}">
                   <label for="razao_social_ou_nome">
                      <span ng-hide="[tipo_pessoa == 'pf']">Razão Social *</span>
                      <span ng-show="[tipo_pessoa == 'pf']">Nome *</span>
                   </label>
-                  <input type="text" class="form-control" id="razao_social_ou_nome" name="razao_social_ou_nome" required>
+                  <input type="text" class="form-control" id="razao_social_ou_nome" name="razao_social_ou_nome" ng-model="razao_social_ou_nome" required>
                </div>
             </div>
             <div class="col-sm-6" ng-hide="[tipo_pessoa == 'pf']">
                <div class="form-group">
                   <label for="nome_fantasia">Nome Fantasia *</label>
-                  <input type="text" class="form-control" id="nome_fantasia" name="nome_fantasia" required>
+                  <input type="text" class="form-control" id="nome_fantasia" name="nome_fantasia" ng-model="nome_fantasia">
                </div>
             </div>
-         </div>
-         <div class="row">
-            <div class="col-sm-3">
+            <div class="col-sm-3" ng-class="{'col-sm-push-3':tipo_pessoa == 'pf'}">
                <div class="form-group">
                   <label for="codigo">Código</label>
                   <input type="text" class="form-control" id="codigo" name="codigo">
                </div>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-3" ng-class="{'col-sm-pull-3':tipo_pessoa == 'pf'}">
                <div class="form-group" ng-hide="[tipo_pessoa == 'pf']">
                   <label for="cnpj">CNPJ</label>
                   <input type="text" class="form-control" id="cnpj" ng-model="cnpj" ui-mask="99.999.999/9999-99">
