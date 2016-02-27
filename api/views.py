@@ -57,6 +57,11 @@ def cliente(request):
     user = User.objects.get(pk=request.user.pk)
     user_profile = UserProfile.objects.get(user=request.user)
 
+    if request.method == 'GET':
+        clientes = Cliente.objects.all();
+        clientes_serializer = serializers.serialize("json", clientes)
+        return HttpResponse(clientes_serializer)
+
     if request.method == 'POST':
         cliente_form = ClienteForm(data=request.POST)
         if cliente_form.is_valid():

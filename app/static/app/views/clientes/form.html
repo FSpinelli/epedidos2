@@ -3,9 +3,7 @@
       <h3 class="box-title">Novo Cliente</h3>
    </div>
 
-
-
-   <form role="form" name="form" novalidate>
+   <form role="form" name="form" ng-submit="save($event)">
       <div class="box-body">
          <div class="row">
             <div class="col-sm-12">
@@ -21,12 +19,7 @@
          </div>
          <div class="row">
             <div class="col-sm-6">
-
-            <span ng-show="(form.razao_social_ou_nome.$dirty || submitted) && form.razao_social_ou_nome.$error.required">
-      Email is required
-    </span>
-
-               <div class="form-group" ng-class="{'has-error': form.razao_social_ou_nome.$touched}">
+               <div class="form-group" ng-class="{true: 'has-error'}[submitted && form.razao_social_ou_nome.$error.required]">
                   <label for="razao_social_ou_nome">
                      <span ng-hide="[tipo_pessoa == 'pf']">Razão Social *</span>
                      <span ng-show="[tipo_pessoa == 'pf']">Nome *</span>
@@ -36,11 +29,11 @@
             </div>
             <div class="col-sm-6" ng-hide="[tipo_pessoa == 'pf']">
                <div class="form-group">
-                  <label for="nome_fantasia">Nome Fantasia *</label>
-                  <input type="text" class="form-control" id="nome_fantasia" name="nome_fantasia" ng-model="nome_fantasia">
+                  <label for="nome_fantasia">Nome Fantasia</label>
+                  <input type="text" class="form-control" id="nome_fantasia" name="nome_fantasia">
                </div>
             </div>
-            <div class="col-sm-3" ng-class="{'col-sm-push-3':tipo_pessoa == 'pf'}">
+            <div class="col-sm-3" ng-class="{'col-sm-push-3':tipo_pessoa == 'pf'">
                <div class="form-group">
                   <label for="codigo">Código</label>
                   <input type="text" class="form-control" id="codigo" name="codigo">
