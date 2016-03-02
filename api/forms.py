@@ -17,9 +17,9 @@ class RegisterForm(forms.ModelForm):
 
 class ClienteForm(forms.ModelForm):
 	razao_social_ou_nome = forms.CharField(required=True)
-	nome_fantasia = forms.CharField(required=True)
+	nome_fantasia = forms.CharField(required=False)
 	codigo = forms.CharField(required=False)
-	tipo_pessoa = forms.CharField(required=True)
+	tipo_pessoa = forms.CharField(required=False)
 	cnpj = forms.CharField(required=False)
 	cpf = forms.CharField(required=False)
 	email = forms.CharField(required=False)

@@ -14,14 +14,14 @@ class ContaSistema(models.Model):
     usuario_modificacao = models.ForeignKey(User, null=True, related_name='usr_modificacao_empresa', editable=False)
     data_modificacao = models.DateTimeField(null=True, auto_now=True)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.nome
 
 class UserProfile(models.Model):
 	conta_sistema = models.ForeignKey(ContaSistema)
 	user = models.ForeignKey(User)
 
-	def __str__(self):
+	def __unicode__(self):
 		return self.user.username
 
 class Cliente(models.Model):
@@ -50,7 +50,7 @@ class Cliente(models.Model):
     usuario_modificacao = models.ForeignKey(User, null=True, related_name='usr_modificacao_cliente')
     data_modificacao = models.DateTimeField(null=True, auto_now=True)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.razao_social_ou_nome
 
 class ContatosClientes(models.Model):
@@ -65,5 +65,5 @@ class ContatosClientes(models.Model):
     usuario_modificacao = models.ForeignKey(User, null=True, related_name='usr_modificacao_contato_cliente', editable=False)
     data_modificacao = models.DateTimeField(null=True, auto_now=True, editable=False)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.nome

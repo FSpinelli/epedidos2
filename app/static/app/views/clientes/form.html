@@ -3,16 +3,16 @@
       <h3 class="box-title">Novo Cliente</h3>
    </div>
 
-   <form role="form" name="form" ng-submit="save($event)">
+   <form role="form" name="form" ng-submit="save($event)" ng-init="formData.tipo_pessoa='pj'">
       <div class="box-body">
          <div class="row">
             <div class="col-sm-12">
                <div class="radio radio-inline">
-                  <input type="radio" id="pj" value="pj" name="tipo_pessoa" ng-model="tipo_pessoa" ng-checked="true">
+                  <input type="radio" id="pj" value="pj" name="formData.tipo_pessoa" ng-model="formData.tipo_pessoa" ng-checked="true">
                   <label for="pj"> Pessoa Jurídica </label>
                </div>
                <div class="radio radio-inline">
-                  <input type="radio" id="pf" value="pf" name="tipo_pessoa" ng-model="tipo_pessoa">
+                  <input type="radio" id="pf" value="pf" name="formData.tipo_pessoa" ng-model="formData.tipo_pessoa">
                   <label for="pf"> Pessoa Física </label>
                </div>
             </div>
@@ -21,44 +21,44 @@
             <div class="col-sm-6">
                <div class="form-group" ng-class="{true: 'has-error'}[submitted && form.razao_social_ou_nome.$error.required]">
                   <label for="razao_social_ou_nome">
-                     <span ng-hide="[tipo_pessoa == 'pf']">Razão Social *</span>
-                     <span ng-show="[tipo_pessoa == 'pf']">Nome *</span>
+                     <span ng-hide="formData.tipo_pessoa == 'pf'">Razão Social *</span>
+                     <span ng-show="formData.tipo_pessoa == 'pf'">Nome *</span>
                   </label>
-                  <input type="text" class="form-control" id="razao_social_ou_nome" name="razao_social_ou_nome" ng-model="razao_social_ou_nome" required>
+                  <input type="text" class="form-control" id="razao_social_ou_nome" name="razao_social_ou_nome" ng-model="formData.razao_social_ou_nome" required>
                </div>
             </div>
-            <div class="col-sm-6" ng-hide="[tipo_pessoa == 'pf']">
+            <div class="col-sm-6" ng-hide="formData.tipo_pessoa == 'pf'">
                <div class="form-group">
                   <label for="nome_fantasia">Nome Fantasia</label>
-                  <input type="text" class="form-control" id="nome_fantasia" name="nome_fantasia">
+                  <input type="text" class="form-control" id="nome_fantasia" name="nome_fantasia" ng-model="formData.nome_fantasia">
                </div>
             </div>
-            <div class="col-sm-3" ng-class="{'col-sm-push-3':tipo_pessoa == 'pf'">
+            <div class="col-sm-3" ng-class="{'col-sm-push-3':tipo_pessoa == 'pf'}">
                <div class="form-group">
                   <label for="codigo">Código</label>
-                  <input type="text" class="form-control" id="codigo" name="codigo">
+                  <input type="text" class="form-control" id="codigo" name="codigo" ng-model="formData.codigo">
                </div>
             </div>
             <div class="col-sm-3" ng-class="{'col-sm-pull-3':tipo_pessoa == 'pf'}">
-               <div class="form-group" ng-hide="[tipo_pessoa == 'pf']">
+               <div class="form-group" ng-hide="formData.tipo_pessoa == 'pf'">
                   <label for="cnpj">CNPJ</label>
-                  <input type="text" class="form-control" id="cnpj" ng-model="cnpj" ui-mask="99.999.999/9999-99">
+                  <input type="text" class="form-control" id="cnpj" ui-mask="99.999.999/9999-99" ng-model="formData.cnpj">
                </div>
-               <div class="form-group" ng-show="[tipo_pessoa == 'pf']">
+               <div class="form-group" ng-show="formData.tipo_pessoa == 'pf'">
                   <label for="cpf">CPF</label>
-                  <input type="text" class="form-control" id="cpf" ng-model="cpf" ui-mask="999.999.999-99">
+                  <input type="text" class="form-control" id="cpf" ui-mask="999.999.999-99" ng-model="formData.cpf">
                </div>
             </div>
-            <div class="col-sm-3" ng-hide="[tipo_pessoa == 'pf']">
+            <div class="col-sm-3" ng-hide="formData.tipo_pessoa == 'pf'">
                <div class="form-group">
                   <label for="inscricao_estadual">Inscricao Estadual</label>
-                  <input type="text" class="form-control" id="inscricao_estadual" name="inscricao_estadual">
+                  <input type="text" class="form-control" id="inscricao_estadual" name="inscricao_estadual" ng-model="formData.inscricao_estadual">
                </div>
             </div>
-            <div class="col-sm-3" ng-hide="[tipo_pessoa == 'pf']">
+            <div class="col-sm-3" ng-hide="formData.tipo_pessoa == 'pf'">
                <div class="form-group">
                   <label for="suframa">Suframa</label>
-                  <input type="text" class="form-control" id="suframa" name="suframa">
+                  <input type="text" class="form-control" id="suframa" name="suframa" ng-model="formData.suframa">
                </div>
             </div>
          </div>
@@ -66,19 +66,19 @@
             <div class="col-sm-4">
                <div class="form-group">
                   <label for="email">E-mail</label>
-                  <input type="email" class="form-control" id="email" name="email">
+                  <input type="email" class="form-control" id="email" name="email" ng-model="formData.email">
                </div>
             </div>
             <div class="col-sm-4">
                <div class="form-group">
                   <label for="telefone">Telefone</label>
-                  <input type="text" class="form-control" id="telefone" name="telefone">
+                  <input type="text" class="form-control" id="telefone" name="telefone" ng-model="formData.telefone">
                </div>
             </div>
             <div class="col-sm-4">
                <div class="form-group">
                   <label for="website">Website</label>
-                  <input type="url" class="form-control" id="website" name="website">
+                  <input type="url" class="form-control" id="website" name="website" ng-model="formData.website">
                </div>
             </div>
          </div>
@@ -87,7 +87,7 @@
             <div class="col-sm-12">
                <div class="form-group">
                   <label for="endereco">Endereço</label>
-                  <input type="text" class="form-control" id="endereco" name="endereco">
+                  <input type="text" class="form-control" id="endereco" name="endereco" ng-model="formData.endereco">
                </div>
             </div>
          </div>
@@ -95,19 +95,19 @@
             <div class="col-sm-4">
                <div class="form-group">
                   <label for="complemento">Complemento</label>
-                  <input type="text" class="form-control" id="complemento" name="complemento">
+                  <input type="text" class="form-control" id="complemento" name="complemento" ng-model="formData.complemento">
                </div>
             </div>
             <div class="col-sm-4">
                <div class="form-group">
                   <label for="bairro">Bairro</label>
-                  <input type="text" class="form-control" id="bairro" name="bairro">
+                  <input type="text" class="form-control" id="bairro" name="bairro" ng-model="formData.bairro">
                </div>
             </div>
             <div class="col-sm-4">
                <div class="form-group">
                   <label for="cep">CEP</label>
-                  <input type="text" class="form-control" id="cep" name="cep">
+                  <input type="text" class="form-control" id="cep" name="cep" ng-model="formData.cep">
                </div>
             </div>
          </div>
@@ -115,13 +115,13 @@
             <div class="col-sm-6">
                <div class="form-group">
                   <label for="cidade">Cidade</label>
-                  <input type="text" class="form-control" id="cidade" name="cidade">
+                  <input type="text" class="form-control" id="cidade" name="cidade" ng-model="formData.cidade">
                </div>
             </div>
             <div class="col-sm-6">
                <div class="form-group">
                   <label for="estado">Estado</label>
-                  <input type="text" class="form-control" id="estado" name="estado">
+                  <input type="text" class="form-control" id="estado" name="estado" ng-model="formData.estado">
                </div>
             </div>
          </div>
@@ -129,7 +129,7 @@
             <div class="col-sm-12">
                <div class="form-group">
                   <label for="observacoes">Observações</label>
-                  <textarea class="form-control" rows="3" id="observacoes" name="observacoes"></textarea>
+                  <textarea class="form-control" rows="3" id="observacoes" name="observacoes" ng-model="formData.observacoes"></textarea>
                </div>
             </div>
          </div>
@@ -138,7 +138,7 @@
             <div class="col-sm-3">
                <div class="form-group">
                   <label for="status">Status</label>
-                  <select class="form-control" id="status" name="status">
+                  <select class="form-control" id="status" name="status" ng-model="formData.status">
                      <option>Ativo</option>
                      <option>Inativo</option>
                   </select>

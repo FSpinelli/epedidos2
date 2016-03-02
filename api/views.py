@@ -1,3 +1,7 @@
+# coding=utf8
+# -*- coding: utf8 -*-
+# vim: set fileencoding=utf8 :
+
 import jwt
 from django.core import serializers
 from django.http import HttpResponse
@@ -6,6 +10,8 @@ from django.contrib.auth.models import User, Permission, Group
 from django.contrib.auth import authenticate, login as auth_login, logout
 from api.forms import *
 from api.models import *
+import json as  simplejson
+from decorators import *
 
 def error_form_serialization(error_dict):  
     """  
@@ -52,7 +58,8 @@ def signup(request):
                 return HttpResponse('500')
         else:
             return HttpResponse(error_form_serialization(register_form.errors))
-
+@csrf_exempt
+# @login_required_and_notify
 def cliente(request):
     user = User.objects.get(pk=request.user.pk)
     user_profile = UserProfile.objects.get(user=request.user)
@@ -73,3 +80,4 @@ def cliente(request):
             return HttpResponse(200)
         else:
             return HttpResponse(error_form_serialization(cliente_form.errors))
+        return HttpResponse(request.POST)
